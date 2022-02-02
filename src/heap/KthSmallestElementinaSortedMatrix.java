@@ -8,12 +8,12 @@ public class KthSmallestElementinaSortedMatrix {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                if (maxHeap.size() >= k) {
-                    if (maxHeap.peek() < matrix[i][j]) {
-                        maxHeap.poll();
-                    }
+                if (maxHeap.size() < k) {
+                    maxHeap.add(matrix[i][j]);
+                } else if (matrix[i][j] < maxHeap.peek()) {
+                    maxHeap.poll();
+                    maxHeap.add(matrix[i][j]);
                 }
-                maxHeap.add(matrix[i][j]);
             }
         }
         return maxHeap.peek();
@@ -22,6 +22,6 @@ public class KthSmallestElementinaSortedMatrix {
     public static void main(String[] args) {
         int[][] matrix = new int[][]{{1, 5, 9}, {10, 11, 13}, {12, 13, 15}};
         int k = 8;
-        kthSmallest(matrix, k);
+        System.out.println(kthSmallest(matrix, k));
     }
 }
