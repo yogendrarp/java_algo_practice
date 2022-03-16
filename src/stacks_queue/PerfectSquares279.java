@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class PerfectSquares279 {
     public int numSquares(int n) {
         int[] dp=new int[n+1];
+
         Arrays.fill(dp,n);
         dp[0]=0;
         dp[1]=1;
